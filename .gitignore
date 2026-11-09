@@ -10,3 +10,4 @@ backend/storage/
 backend/.initial-admin.txt
 frontend/test-results/
 frontend/playwright-report/
+Start-PostMate.bat
