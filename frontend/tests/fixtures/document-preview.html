@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document preview component test</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      // An isolated UI test fixture; production documents always come from the authenticated API.
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+      import DocumentPreview from '/src/components/DocumentPreview.jsx';
+      import '/src/styles.css';
+      import '/src/readability.css';
+      import '/src/document-preview.css';
+      function Fixture() {
+        const [open, setOpen] = React.useState(true);
+        return open
+          ? React.createElement(DocumentPreview, {
+              document: {
+                id: 'preview-fixture',
+                kind: 'aadhaar',
+                content_type:
+                  new URLSearchParams(location.search).get('format') === 'image'
+                    ? 'image/png'
+                    : 'application/pdf',
+              },
+              onClose: () => setOpen(false),
+            })
+          : React.createElement('p', null, 'Preview closed');
+      }
+      createRoot(document.getElementById('root')).render(React.createElement(Fixture));
+    </script>
+  </body>
+</html>

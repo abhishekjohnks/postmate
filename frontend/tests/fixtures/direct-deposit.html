@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="root" style="max-width: 720px; margin: auto; padding: 16px"></div>
+    <script type="module">
+      import React, { useState } from 'react';
+      import { createRoot } from 'react-dom/client';
+      import { MemoryRouter } from 'react-router-dom';
+      import CustomerAccountCard from '/src/components/CustomerAccountCard.jsx';
+      import { PaymentForm } from '/src/pages/Payments.jsx';
+      import '/src/styles.css';
+      import '/src/readability.css';
+      import '/src/account-lifespan.css';
+      const account = {
+        id: 'test-flexible',
+        customer_name: 'Example customer',
+        scheme_name: 'Sukanya Samriddhi Account',
+        account_number: 'SSA-EXAMPLE',
+        start_date: '2024-01-01',
+        maturity_date: '2045-01-01',
+        status: 'active',
+        rule_snapshot: { code: 'SSA', schedule_kind: 'discretionary' },
+        total_deposited: '600',
+        annual_deposits: [
+          {
+            financial_year: '2025-2026',
+            deposited: '100',
+            minimum: '250',
+            maximum: '150000',
+            remaining_to_minimum: '150',
+            status: 'shortfall_review',
+          },
+          {
+            financial_year: '2026-2027',
+            deposited: '500',
+            minimum: '250',
+            maximum: '150000',
+            status: 'minimum_met',
+          },
+        ],
+      };
+      function Fixture() {
+        const [open, setOpen] = useState(false);
+        return React.createElement(
+          MemoryRouter,
+          null,
+          React.createElement(CustomerAccountCard, {
+            account,
+            onEdit: () => {},
+            onDeposit: () => setOpen(true),
+          }),
+          open &&
+            React.createElement(PaymentForm, {
+              account,
+              onClose: () => setOpen(false),
+              onSaved: () => {},
+            }),
+        );
+      }
+      createRoot(document.getElementById('root')).render(React.createElement(Fixture));
+    </script>
+  </body>
+</html>

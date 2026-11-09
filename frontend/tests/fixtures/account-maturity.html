@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Account card component test</title>
+  </head>
+  <body>
+    <!-- Isolated display fixture; never creates application/database records or enters the production build. -->
+    <div id="root" style="max-width: 720px; margin: 20px auto; padding: 12px"></div>
+    <script type="module">
+      import React from 'react';
+      import { createRoot } from 'react-dom/client';
+      import CustomerAccountCard from '/src/components/CustomerAccountCard.jsx';
+      import { MemoryRouter } from 'react-router-dom';
+      import '/src/styles.css';
+      import '/src/readability.css';
+      import '/src/account-lifespan.css';
+      const account = {
+        id: 'component-fixture',
+        scheme_name: 'Recurring Deposit',
+        account_number: 'RD-FIXTURE',
+        status: 'active',
+        start_date: '2024-01-31',
+        maturity_date: '2029-01-31',
+        maturity_amount: '36500.50',
+        nominee_name: 'Example Nominee',
+        account_term: { years: 5, months: 0, days: 0 },
+        maturity_remaining: { years: 2, months: 3, days: 3 },
+        maturity_as_of: '2026-10-28',
+        maturity_status: 'active',
+      };
+      createRoot(document.getElementById('root')).render(
+        React.createElement(
+          MemoryRouter,
+          null,
+          React.createElement(CustomerAccountCard, {
+            account,
+            canDelete: new URLSearchParams(location.search).get('role') === 'super_admin',
+            onEdit: () => {},
+            onDelete: () => {},
+            onNavigate: () => {},
+          }),
+        ),
+      );
+    </script>
+  </body>
+</html>

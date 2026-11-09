@@ -1,0 +1,176 @@
+.account-lifespan {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 230px;
+  max-width: 290px;
+  white-space: normal;
+  line-height: 1.6;
+}
+.account-lifespan > span {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+}
+.account-lifespan svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: #a67a5d;
+}
+.account-lifespan strong {
+  font-weight: 600;
+  font-size: 11px;
+}
+.account-lifespan small {
+  display: block;
+  font-size: 9px;
+  color: #777079;
+  margin-top: 2px;
+}
+.account-lifespan .lifespan-remaining {
+  color: #426c50;
+  font-size: 10px;
+}
+.account-lifespan .lifespan-remaining svg {
+  color: #5c8668;
+}
+.account-lifespan .lifespan-ended {
+  color: #9c5939;
+  font-size: 10px;
+}
+.profile-account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 24px 20px;
+}
+.profile-account-card {
+  border: 1px solid #e9e2dc;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+.profile-account-card > header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 17px 19px;
+  background: linear-gradient(100deg, #fff9f1, #fff);
+}
+.profile-account-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  background: #f9e6d5;
+  border-radius: 10px;
+  color: #a36a43;
+}
+.profile-account-card h4 {
+  font-family: Manrope, sans-serif;
+  margin: 0;
+  font-size: 13px;
+  color: #523e33;
+}
+.profile-account-card > header > div > span {
+  display: block;
+  font-size: 11px;
+  color: #79695e;
+  margin-top: 5px;
+  overflow-wrap: anywhere;
+}
+.profile-account-card > header > .badge {
+  margin-left: auto;
+}
+.profile-account-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px 25px;
+  margin: 0;
+  padding: 19px;
+}
+.profile-account-facts dt {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #7b7069;
+}
+.profile-account-facts dd {
+  font-size: 12px;
+  font-weight: 550;
+  margin: 7px 0 0;
+  overflow-wrap: anywhere;
+}
+.profile-account-facts .maturity-value dd {
+  font-size: 19px;
+  color: #ad3831;
+  font-weight: 700;
+}
+.profile-account-term {
+  background: #fafaf8;
+  margin: 0 18px 17px;
+  border: 1px solid #eeeae5;
+  border-radius: 8px;
+  padding: 13px;
+}
+.profile-account-term .account-lifespan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 0;
+  max-width: none;
+  gap: 15px;
+}
+.profile-account-card > footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 18px;
+  gap: 15px;
+  border-top: 1px solid #eee8e2;
+}
+.profile-account-card > footer .icon-button:first-of-type {
+  margin-left: auto;
+}
+.profile-account-card > footer .text-link {
+  font-size: 10px;
+}
+@media (max-width: 720px) {
+  .profile-account-list {
+    margin: 0 15px 16px;
+  }
+  .profile-account-card > header {
+    padding: 14px 13px;
+    gap: 8px;
+  }
+  .profile-account-card > header > .badge {
+    font-size: 8px;
+  }
+  .profile-account-card h4 {
+    font-size: 11px;
+  }
+  .profile-account-facts {
+    padding: 15px;
+    gap: 18px;
+  }
+  .profile-account-facts .maturity-value dd {
+    font-size: 17px;
+  }
+  .profile-account-term .account-lifespan {
+    grid-template-columns: 1fr;
+  }
+  .profile-account-card > footer {
+    padding: 10px 12px;
+    gap: 9px;
+  }
+  .profile-account-card > footer .text-link {
+    font-size: 9px;
+  }
+  .profile-account-icon {
+    width: 30px;
+    height: 30px;
+  }
+}

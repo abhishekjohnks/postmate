@@ -1,0 +1,21 @@
+.identity-value {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 32px;
+}
+.identity-value .icon-button {
+  border: 1px solid #efe0d5;
+  background: #fff7ee;
+  color: #a66d49;
+}
+.icon-button.danger {
+  color: #b32f2e;
+}
+.icon-button.danger:hover {
+  background: #fcebe8;
+}
+.badge.deleted {
+  color: #a5463c;
+  background: #fcedea;
+}

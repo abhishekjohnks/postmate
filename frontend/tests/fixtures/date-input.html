@@ -1,0 +1,14 @@
+<!doctype html>
+<html><body><div id="root"></div><script type="module">
+import React, { useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import DateInput from '/src/components/DateInput.jsx';
+function Fixture() {
+  const [value, setValue] = useState('2024-02-29');
+  return React.createElement('form', { onSubmit: (e) => e.preventDefault() },
+    React.createElement(DateInput, { 'aria-label': 'Date', required: true, value,
+      min: '2020-01-01', max: '2030-12-31', onChange: (e) => setValue(e.target.value) }),
+    React.createElement('output', null, value));
+}
+createRoot(document.getElementById('root')).render(React.createElement(Fixture));
+</script></body></html>
