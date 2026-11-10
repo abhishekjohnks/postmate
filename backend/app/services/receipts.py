@@ -163,7 +163,7 @@ def render_receipt(receipt, reversed_at=None):
     details.extend([
         ("PAYMENT METHOD", str(snapshot.get("method") or "Not recorded").replace("_", " ").title()),
         ("INSTALMENT", str(snapshot.get("sequence") or "Not recorded")),
-        ("INSTALMENT DUE DATE", display_date(snapshot.get("due_date"))),
+        # ("INSTALMENT DUE DATE", display_date(snapshot.get("due_date"))),
     ])
     if snapshot.get("staff_name"):
         details.append(("COLLECTED BY", snapshot["staff_name"]))
