@@ -14,3 +14,12 @@ export const date = (value) =>
     : '—';
 export const localToday = () =>
   new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+
+export const receiptFilename = (customerName) => {
+  const name = (customerName || 'Customer')
+    .replace(/[<>:"/\\|?*\u0000-\u001f\u007f]/g, '')
+    .trim()
+    .replace(/\.+$/, '')
+    .slice(0, 150);
+  return `${name || 'Customer'} - Payment Receipt.pdf`;
+};

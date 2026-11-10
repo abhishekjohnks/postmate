@@ -1,5 +1,7 @@
 from datetime import date, datetime, timezone
 from typing import Annotated
+import re
+from urllib.parse import quote
 from fastapi import APIRouter, Header, HTTPException, Query, Response
 from sqlalchemy import func, or_, select
 from app.api.helpers import data, page, result
@@ -213,5 +215,10 @@ def receipt_pdf(receipt_id: str, db: DB, actor: Actor):
         download_count=PaymentReceipt.download_count + 1, last_downloaded_at=datetime.now(timezone.utc)))
     audit(db, actor, "receipt.downloaded", "payment_receipts", receipt.id)
     content = render_receipt(receipt, transaction.reversed_at)
+    customer_name = re.sub(r'[<>:"/\\|?*\x00-\x1f\x7f]', '', receipt.snapshot.get("customer_name") or "Customer")
+    customer_name = customer_name.strip().rstrip('.')[:150] or "Customer"
+    filename = f"{customer_name} - Payment Receipt.pdf"
+    fallback = customer_name.encode("ascii", "ignore").decode().strip() or "Customer"
+    disposition = f'attachment; filename="{fallback} - Payment Receipt.pdf"; filename*=UTF-8\'\'{quote(filename, safe="")}'
     return Response(content, media_type="application/pdf", headers={
-        "Content-Disposition": f'attachment; filename="PostMate-receipt-{transaction.payment_date.isoformat()}.pdf"', "Cache-Control": "no-store"})
+        "Content-Disposition": disposition, "Cache-Control": "no-store"})

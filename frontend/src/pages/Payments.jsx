@@ -17,7 +17,7 @@ import {
   SaveButton,
   Table,
 } from '../components/UI';
-import { date, localToday, money } from '../utils/format';
+import { date, localToday, money, receiptFilename } from '../utils/format';
 
 export function PaymentForm({ schedule, account, onClose, onSaved }) {
   const [q, setQ] = useState('');
@@ -53,7 +53,7 @@ export function PaymentForm({ schedule, account, onClose, onSaved }) {
               try {
                 await download(
                   `/receipts/${saved.receipt_id}/pdf`,
-                  `PostMate-receipt-${saved.payment_date}.pdf`,
+                  receiptFilename(saved.customer_name),
                 );
               } catch (e) {
                 setError(e.message);
@@ -314,7 +314,7 @@ export default function Payments({ dues = false }) {
                   try {
                     await download(
                       `/receipts/${p.receipt_id}/pdf`,
-                      `PostMate-receipt-${p.payment_date}.pdf`,
+                      receiptFilename(p.customer_name),
                     );
                   } catch (e) {
                     setActionError(e.message);

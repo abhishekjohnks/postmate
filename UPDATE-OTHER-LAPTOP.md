@@ -1,5 +1,9 @@
 # Flexible deposits and dd/mm/yyyy update
 
+## Receipt filename update (10 November 2026)
+
+Copy `backend/app/api/payments.py`, `frontend/src/utils/format.js`, and `frontend/src/pages/Payments.jsx` to the same paths on the other laptop and restart both servers. Receipt downloads now use `Customer Name - Payment Receipt.pdf`, including downloads from transaction history. Unsupported filename characters are removed. No migration, seed or dependency installation is needed.
+
 ## Changed application files
 
 Copy these files to the same relative paths on the other laptop:
